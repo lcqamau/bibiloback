@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
-use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource as MetadataApiResource;
+use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategorieRepository::class)]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[MetadataApiResource()]
 class User
 {
@@ -16,7 +16,7 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstname = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
@@ -24,8 +24,8 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    #[ORM\Column(length: 20)]
+    private ?string $paswword = null;
 
     #[ORM\Column(length: 255)]
     private ?string $role = null;
@@ -35,14 +35,14 @@ class User
         return $this->id;
     }
 
-    public function getFirstname(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
-    public function setFirstname(string $firstname): static
+    public function setFirstName(string $firstName): static
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -59,7 +59,6 @@ class User
         return $this;
     }
 
-
     public function getEmail(): ?string
     {
         return $this->email;
@@ -72,14 +71,14 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPaswword(): ?string
     {
-        return $this->password;
+        return $this->paswword;
     }
 
-    public function setPassword(string $password): static
+    public function setPaswword(string $paswword): static
     {
-        $this->password = $password;
+        $this->paswword = $paswword;
 
         return $this;
     }
