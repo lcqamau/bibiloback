@@ -24,6 +24,12 @@ class Livre
     private ?string $author = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $resume = null;
+
+    #[ORM\Column(length: 1000)]
+    private ?string $categories = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $image = null;
 
     #[ORM\Column]
@@ -32,15 +38,9 @@ class Livre
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\OneToMany(targetEntity: Resume::class, mappedBy: 'livre_id')]
-    private Collection $resumes;
-
-    #[ORM\Column(length: 255)]
-    private ?string $resume = null;
-
     public function __construct()
     {
-        $this->resumes = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -68,6 +68,30 @@ class Livre
     public function setAuthor(string $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getResume(): ?string
+    {
+        return $this->resume;
+    }
+
+    public function setResume(string $resume): static
+    {
+        $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function getCategories(): ?string
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(string $categories): static
+    {
+        $this->categories = $categories;
 
         return $this;
     }
@@ -104,48 +128,6 @@ class Livre
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Resume>
-     */
-    public function getResumes(): Collection
-    {
-        return $this->resumes;
-    }
-
-    public function addResume(Resume $resume): static
-    {
-        if (!$this->resumes->contains($resume)) {
-            $this->resumes->add($resume);
-            $resume->setLivreId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeResume(Resume $resume): static
-    {
-        if ($this->resumes->removeElement($resume)) {
-            // set the owning side to null (unless already changed)
-            if ($resume->getLivreId() === $this) {
-                $resume->setLivreId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getResume(): ?string
-    {
-        return $this->resume;
-    }
-
-    public function setResume(string $resume): static
-    {
-        $this->resume = $resume;
 
         return $this;
     }
