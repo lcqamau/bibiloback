@@ -21,6 +21,19 @@ class LivreRepository extends ServiceEntityRepository
         parent::__construct($registry, Livre::class);
     }
 
+     /**
+     * Supprime un livre en fonction de son ID.
+     *
+     * @param int $bookId L'ID du livre à supprimer.
+     */
+    public function deleteBookById(int $bookId): void
+    {
+        $entityManager = $this->getEntityManager();
+        $book = $entityManager->getReference(Livre::class, $bookId);
+        $entityManager->remove($book);
+        $entityManager->flush();
+    }
+
     //    /**
     //     * @return Livre[] Returns an array of Livre objects
     //     */

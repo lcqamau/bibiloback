@@ -16,7 +16,7 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $firstName = null;
+    private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
@@ -25,7 +25,7 @@ class User
     private ?string $email = null;
 
     #[ORM\Column(length: 20)]
-    private ?string $paswword = null;
+    private ?string $password = null;
 
     #[ORM\Column(length: 255)]
     private ?string $role = null;
@@ -37,12 +37,12 @@ class User
 
     public function getFirstName(): ?string
     {
-        return $this->firstName;
+        return $this->firstname;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setFirstName(string $firstname): static
     {
-        $this->firstName = $firstName;
+        $this->firstname = $firstname;
 
         return $this;
     }
@@ -71,14 +71,14 @@ class User
         return $this;
     }
 
-    public function getPaswword(): ?string
+    public function getPassword(): ?string
     {
-        return $this->paswword;
+        return $this->password;
     }
 
-    public function setPaswword(string $paswword): static
+    public function setPassword(string $password): static
     {
-        $this->paswword = $paswword;
+        $this->password = $password;
 
         return $this;
     }

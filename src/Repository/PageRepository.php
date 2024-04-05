@@ -37,4 +37,17 @@ use Doctrine\Persistence\ManagerRegistry;
              ->getQuery()
              ->getResult();
      }
+
+      /**
+     * Supprime un page en fonction de son ID.
+     *
+     * @param int $pageId L'ID du page à supprimer.
+     */
+    public function deletePageById(int $pageId): void
+    {
+        $entityManager = $this->getEntityManager();
+        $page = $entityManager->getReference(Page::class, $pageId);
+        $entityManager->remove($page);
+        $entityManager->flush();
+    }
  }
